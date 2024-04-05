@@ -26,8 +26,8 @@ public class AssignmentRepositoryImpl implements AssignmentRepository {
         try {
             Connection connection = JDBCConnectorUtil.getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, assignmentEntity.getDriver_id());
-            pstmt.setInt(2, assignmentEntity.getRoute_id());
+            pstmt.setInt(1, assignmentEntity.getDriver().getId());
+            pstmt.setInt(2, assignmentEntity.getRoute().getId());
             pstmt.setInt(3, assignmentEntity.getRound());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -46,8 +46,8 @@ public class AssignmentRepositoryImpl implements AssignmentRepository {
             while(rs.next()) {
                 AssignmentEntity assignmentEntity = new AssignmentEntity();
                 assignmentEntity.setId(rs.getInt("a.id"));
-                assignmentEntity.setDriver_id(rs.getInt("a.driver_id"));
-                assignmentEntity.setRoute_id(rs.getInt("a.route_id"));
+//                assignmentEntity.setDriver_id(rs.getInt("a.driver_id"));
+//                assignmentEntity.setRoute_id(rs.getInt("a.route_id"));
                 assignmentEntity.setRound(rs.getInt("a.round"));
                 result.add(assignmentEntity);
             }

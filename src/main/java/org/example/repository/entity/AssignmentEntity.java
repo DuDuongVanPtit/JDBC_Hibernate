@@ -1,13 +1,38 @@
 package org.example.repository.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "assignment")
 public class AssignmentEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int driver_id;
-    private int route_id;
+    @Column(name = "round")
     private int round;
 
-    public int getDriver_id() {
-        return driver_id;
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    private DriverEntity driver;
+
+    @ManyToOne
+    @JoinColumn(name = "route_id")
+    private RouteEntity route;
+
+    public DriverEntity getDriver() {
+        return driver;
+    }
+
+    public void setDriver(DriverEntity driver) {
+        this.driver = driver;
+    }
+
+    public RouteEntity getRoute() {
+        return route;
+    }
+
+    public void setRoute(RouteEntity route) {
+        this.route = route;
     }
 
     public int getId() {
@@ -18,17 +43,6 @@ public class AssignmentEntity {
         this.id = id;
     }
 
-    public void setDriver_id(int driver_id) {
-        this.driver_id = driver_id;
-    }
-
-    public int getRoute_id() {
-        return route_id;
-    }
-
-    public void setRoute_id(int route_id) {
-        this.route_id = route_id;
-    }
 
     public int getRound() {
         return round;

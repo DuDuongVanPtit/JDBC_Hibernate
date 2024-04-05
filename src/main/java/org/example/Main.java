@@ -105,6 +105,7 @@ public class Main {
 
                 }
                 catch (Exception e){
+                    System.out.println(e);
                     System.out.println("Invalid input. Please enter a valid number.");
                     scanner.next();
                 }

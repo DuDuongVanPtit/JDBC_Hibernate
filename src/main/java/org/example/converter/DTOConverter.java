@@ -52,8 +52,8 @@ public class DTOConverter {
     public static AssignmentDTO assignmentEntityToAssignmentDTO(AssignmentEntity assignmentEntity){
         AssignmentDTO assignmentDTO = new AssignmentDTO();
         assignmentDTO.setId(assignmentEntity.getId());
-        assignmentDTO.setDriver_id(assignmentEntity.getDriver_id());
-        assignmentDTO.setRoute_id(assignmentEntity.getRoute_id());
+        assignmentDTO.setDriver_id(assignmentEntity.getDriver().getId());
+        assignmentDTO.setRoute_id(assignmentEntity.getRoute().getId());
         assignmentDTO.setRound(assignmentEntity.getRound());
 
         return assignmentDTO;

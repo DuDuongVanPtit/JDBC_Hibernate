@@ -29,8 +29,8 @@ public class EntityConverter {
     public static AssignmentEntity toAssignmentEntity(AssignmentDTO assignmentDTO){
         AssignmentEntity assignmentEntity = new AssignmentEntity();
         assignmentEntity.setId(assignmentDTO.getId());
-        assignmentEntity.setDriver_id(assignmentDTO.getDriver_id());
-        assignmentEntity.setRoute_id(assignmentDTO.getRoute_id());
+//        assignmentEntity.setDriver_id(assignmentDTO.getDriver_id());
+//        assignmentEntity.setRoute_id(assignmentDTO.getRoute_id());
         assignmentEntity.setRound(assignmentDTO.getRound());
 
         return assignmentEntity;

@@ -5,32 +5,42 @@ import org.example.repository.entity.DriverEntity;
 import org.example.utils.JDBCConnectorUtil;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class DriverRepositoryImpl implements DriverRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
     @Override
+    @Transactional
     public void addDriver(DriverEntity driverEntity) {
-        String sql = "INSERT INTO driver (code, name, address, phone_number, qualification) VALUES (?, ?, ?, ?, ?)";
-        executeQuery1(driverEntity,sql);
+        entityManager.persist(driverEntity);
     }
-    public void executeQuery1(DriverEntity driverEntity, String sql){
-        try {
-            Connection connection = JDBCConnectorUtil.getConnection();
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, driverEntity.getCode());
-            pstmt.setString(2, driverEntity.getName());
-            pstmt.setString(3, driverEntity.getAddress());
-            pstmt.setString(4, driverEntity.getPhoneNumber());
-            pstmt.setString(5, driverEntity.getQualification());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Insert failed!");
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public void addDriver(DriverEntity driverEntity) {
+//        String sql = "INSERT INTO driver (code, name, address, phone_number, qualification) VALUES (?, ?, ?, ?, ?)";
+//        executeQuery1(driverEntity,sql);
+//    }
+//    public void executeQuery1(DriverEntity driverEntity, String sql){
+//        try {
+//            Connection connection = JDBCConnectorUtil.getConnection();
+//            PreparedStatement pstmt = connection.prepareStatement(sql);
+//            pstmt.setString(1, driverEntity.getCode());
+//            pstmt.setString(2, driverEntity.getName());
+//            pstmt.setString(3, driverEntity.getAddress());
+//            pstmt.setString(4, driverEntity.getPhoneNumber());
+//            pstmt.setString(5, driverEntity.getQualification());
+//            pstmt.executeUpdate();
+//        } catch (SQLException e) {
+//            System.err.println("Insert failed!");
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public List<DriverEntity> getAllDriver() {
